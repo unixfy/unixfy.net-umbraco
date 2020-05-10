@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29905.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnixfyUmbracoProj1", "UnixfyUmbracoProj1\UnixfyUmbracoProj1.csproj", "{15F25185-5B40-413B-B803-211A92C065A2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnixfyDotNet-V1", "UnixfyUmbracoProj1\UnixfyDotNet-V1.csproj", "{15F25185-5B40-413B-B803-211A92C065A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
