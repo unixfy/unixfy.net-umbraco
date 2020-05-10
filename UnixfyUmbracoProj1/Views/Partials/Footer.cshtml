@@ -1,0 +1,55 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@{ 
+    var footerCopyright = Model.Value<IPublishedElement>("footerCopyrightBox");
+    var footerSocialMedia = Model.Value<IEnumerable<IPublishedElement>>("footerSocialMedia");
+    var footerLinks = Model.Value<IEnumerable<IPublishedElement>>("footerLinks");
+}
+    <!-- Start: Footer Clean -->
+    <div class="footer-clean">
+        <footer>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <!-- Start: Copyright Box -->
+                    <div class="col-lg-6 item">
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="card-text"><strong>@footerCopyright.Value("copyrightString")</strong><br>@footerCopyright.Value("poweredByText")</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End: Copyright Box -->
+                    <!-- Start: Social -->
+                    <div class="col-sm-3 item social">
+                        <h3>Social Media</h3>
+                        @{ 
+                            foreach(var item in footerSocialMedia)
+                            {
+                               <a href="@item.Value("socialURL")" target="_blank">
+                                <i class="@item.Value("socialIcon")"></i>
+                               </a>
+                            }
+                        }
+                    </div>
+                    <!-- End: Social -->
+                    <!-- Start: Links -->
+                    <div class="col-sm-4 col-md-3 item">
+                        <h3>Links</h3>
+                        <ul>
+                            @{ 
+                                foreach(var item in footerLinks)
+                                {
+                                    <li><a href="@item.Value("linkURL")" target="_blank">@item.Value("linkText")</a></li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                    <!-- End: Links -->
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- End: Footer Clean -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="~/scripts/Minified Scripts Unixfy.js"></script>
+</body>

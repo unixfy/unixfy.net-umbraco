@@ -1,0 +1,84 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Homepage>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = "master.cshtml";
+    var jumbotronBackgroundUrl = Model.Value<IPublishedContent>("jumbotronBackground")?.Url ?? ""; ;
+    var linkElement = Model.Value<IEnumerable<IPublishedElement>>("linkElements");
+    var aboutElement = Model.Value<IEnumerable<IPublishedElement>>("aboutElements");
+    //var portalTileElement = Model.Value<IEnumerable<IPublishedElement>>("portalTilesElements");
+}
+<!-- Start: Hello -->
+<div class="d-flex d-sm-flex d-md-flex d-lg-flex justify-content-center align-items-center justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center" data-bs-parallax-bg="true" style="width: 100%;height: 90vh;margin: 0px;background-image: url('@jumbotronBackgroundUrl');">
+    <div class="jumbotron d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center align-content-center justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center"
+         style="width: 75vw;height: 50vh;background-color: rgba(233,236,239,0.77);margin: 0 0 32;margin-bottom: 0;">
+        <div>
+            <h1 class="text-center">@Model.Value("jumbotronHeading")</h1>
+            <h3 class="text-center">@Model.Value("jumbotronLead")</h3>
+        </div>
+    </div>
+</div>
+<!-- End: Hello -->
+<!-- Start: Links -->
+<div class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center about-div"
+     style="padding: 10%;">
+    <div class="container">
+        <h1 class="text-center text-white">Links</h1>
+        <br />
+        <ul class="list-group">
+            @{
+                foreach (var item in linkElement)
+                {
+                    <a href="@item.Value("link")" class="list-group-item list-group-item-action"><h3><i class="@item.Value("icon")"></i> @item.Value("title") <small class="text-muted">@item.Value("subtitle")</small> <span style="float:right;"><i class="fas fa-arrow-alt-circle-right"></i></span></h3></a>
+                }
+            }
+        </ul>
+    </div>
+</div>
+<!-- End: Links -->
+<!-- Start: About -->
+@*<div class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center about-div"
+         style="padding: 10%;">
+        <div class="container">
+            <div class="row" style="height: 100%;">
+                @{
+                    foreach (var item in aboutElement)
+                    {
+                        <div class="col-md-4">
+                            <div class="text-center text-white">
+                                <i class="@item.Value("icon") fa-4x" style="padding-bottom: 10px;"></i>
+                                <h3>@item.Value("title")</h3>
+                                @item.Value("description")
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>*@
+<!-- End: About -->
+<!-- Start: Portal Tiles -->
+@*<div class="bg-secondary" style="padding: 0;">
+        <div class="row" style="margin: 0;">
+            @{
+                foreach (var item in portalTileElement)
+                {
+                    <div class="col-lg-6" style="margin: 0;padding: 0;">
+                        <div class="card" style="margin: 5%;">
+                            <div class="card-body">
+                                <div style="padding: 15px;">
+                                                <h1 class="text-center">
+                                                    <i class="@item.Value("icon")"></i>&nbsp;@item.Value("title")
+                                                </h1>
+                                                <p class="lead text-center">@item.Value("description")</p>
+
+                                    <br />
+                                    <a href="@item.Value("link")" class="btn btn-success btn-block btn-lg text-center">Go <i class="far fa-arrow-alt-circle-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>*@
+<!-- End: Portal Tiles -->

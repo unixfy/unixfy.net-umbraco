@@ -1,0 +1,56 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@{ 
+    var navElements = Model.Value<IEnumerable<IPublishedElement>>("navElements", fallback: Fallback.ToAncestors);
+    var appleTouchIconUrl = Model.Value<IPublishedContent>("appleTouchIcon", fallback: Fallback.ToAncestors)?.Url ?? "";;
+    var favicon32Url = Model.Value<IPublishedContent>("favicon32", fallback: Fallback.ToAncestors)?.Url ?? "";;
+    var favicon16Url = Model.Value<IPublishedContent>("favicon16", fallback: Fallback.ToAncestors)?.Url ?? "";;
+    var webmanifestUrl = Model.Value<IPublishedContent>("webmanifest", fallback: Fallback.ToAncestors)?.Url ?? "";;
+    var safariPinnedTabUrl = Model.Value<IPublishedContent>("safariPinnedTab", fallback: Fallback.ToAncestors)?.Url ?? "";;
+    var faviconUrl = Model.Value<IPublishedContent>("favicon", fallback: Fallback.ToAncestors)?.Url ?? "";;
+    var msApplicationBrowserConfigUrl = Model.Value<IPublishedContent>("msApplicationBrowserConfig", fallback: Fallback.ToAncestors)?.Url ?? "";;
+}
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <title>@Model.Name | @Model.Value("siteName", fallback: Fallback.ToAncestors)</title>
+        <meta name="og:title" property="og:title" content="@Model.Name | @Model.Value("siteName", fallback: Fallback.ToAncestors)">
+        <meta name="description" content="@Model.Value("metaDescription", fallback: Fallback.ToAncestors)">
+        <meta name="og:description" property="og:description" content="@Model.Value("metaDescription", fallback: Fallback.ToAncestors)" />
+        <!-- Todo: <meta name="robots" -->
+        <!-- CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:400,700">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+        <link rel="stylesheet" href="~/css/Minified Styles Unixfy.css">
+        <!-- Favicons -->
+        <link rel="apple-touch-icon" sizes="180x180" href="@appleTouchIconUrl">
+        <link rel="icon" type="image/png" sizes="32x32" href="@favicon32Url">
+        <link rel="icon" type="image/png" sizes="16x16" href="@favicon16Url">
+        <link rel="manifest" href="@webmanifestUrl">
+        <link rel="mask-icon" href="@safariPinnedTabUrl" color="#5bbad5">
+        <link rel="shortcut icon" href="@faviconUrl">
+        <meta name="msapplication-TileColor" content="#00aba9">
+        <meta name="msapplication-config" content="@msApplicationBrowserConfigUrl">
+        <meta name="theme-color" content="#ffffff">
+    </head>
+
+<body>
+    <!-- Start: Navigation Clean -->
+    <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">@Model.Value("siteName", fallback: Fallback.ToAncestors)</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse"
+                 id="navcol-1">
+                <ul class="nav navbar-nav ml-auto">
+                    @{ 
+                        foreach(var item in navElements)
+                        {
+                            <li class="nav-item"><a class="nav-link" href="@item.Value("navURL")">@item.Value("navText")</a></li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End: Navigation Clean -->
